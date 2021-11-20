@@ -9,9 +9,16 @@ class Video(models.Model):
     channelTitle = models.CharField(max_length=200)
     channelId = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.title
+
+
 class Thumbnail(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='thumbnails')
     url = models.URLField()
     width = models.IntegerField()
     height = models.IntegerField()
     resolution = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.url
