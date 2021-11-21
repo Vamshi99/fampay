@@ -12,7 +12,6 @@ from django.conf import settings
 
 @background(schedule=60)
 def getLatestDataFromYoutube():
-    print("hi" + datetime.utcnow().isoformat()+ "Z")
     api_service_name = "youtube"
     api_version = "v3"
     custom_settings = settings.CUSTOM_SETTINGS
@@ -24,6 +23,7 @@ def getLatestDataFromYoutube():
 
     # Try to get data by using keys. If success, save the data to database,
     # else try to get data by using another key
+    print("Getting data for search term: " + custom_settings['queryTerm'])
     for api_key in keys:
         try:
             # Get data from youtube by calling the Data v3 API using the google api client
