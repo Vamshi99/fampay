@@ -9,7 +9,7 @@ A django application which shows Youtube videos data of any search term. Databas
 
 #### Models: 
 
-- Video - Stores user details like name, email(unique)
+- Video - Stores user details like id, title, description, publishTime, channel ID , channel title 
 
 - Thumbanil - Stores resolution, url, height, width. Thumbanil-Video has a ManyToOne relationship
 
