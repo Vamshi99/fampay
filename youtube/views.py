@@ -4,7 +4,6 @@ from rest_framework.pagination import PageNumberPagination
 from youtube.models import Video
 from youtube.serializers import VideoSerializer
 from django.db.models import Q
-from youtube.tasks import getLatestDataFromYoutube
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -25,4 +24,25 @@ class VideoListAPIView(ListAPIView):
             queryset = queryset.filter(Q(title__icontains=query) | Q(description__icontains=query))
         return queryset.order_by('-publishTime')
 
-getLatestDataFromYoutube(repeat=3600)
+# getLatestDataFromYoutube(repeat=3600)
+# import asyncio
+# import time
+
+# async def say_after(delay, what):
+#     await asyncio.sleep(delay)
+#     print(what)
+
+# async def main():
+#     print(f"started at {time.strftime('%X')}")
+
+#     task1 = asyncio.create_task(
+#         getLatestDataFromYoutube(1, 'hello'))
+
+#     # task2 = asyncio.create_task(
+#     #     say_after(2, 'world'))
+#     # await say_after(1, 'hello')
+#     # await say_after(2, 'world')
+
+#     print(f"finished at {time.strftime('%X')}")
+
+# asyncio.run(main())

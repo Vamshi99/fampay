@@ -8,10 +8,10 @@ services:
       - .:/code
     ports:
       - "5001:5001"
-  tasks:
-      build: .
-      command: python3 manage.py process_tasks
-      volumes:
-        - .:/code
-      depends_on:
-        - web
+  cron:
+    build: .
+    command: crond -l 2 -f
+    volumes:
+      - .:/code
+    depends_on:
+      - web
