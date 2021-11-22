@@ -20,7 +20,6 @@ class Command(BaseCommand):
         # Read keys from the file
         with open(KEYS_FILE) as f:
             keys = [line.rstrip() for line in f]
-        print(keys)
 
         # Try to get data by using keys. If success, save the data to database,
         # else try to get data by using another key

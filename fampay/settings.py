@@ -128,5 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CUSTOM_SETTINGS = {
     'queryTerm': 'sports',
-    'fetchInterval': 300,
+    'fetchInterval': 60,
 }
