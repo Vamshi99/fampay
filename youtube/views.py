@@ -7,6 +7,7 @@ from django.db.models import Q
 
 
 class StandardResultsSetPagination(PageNumberPagination):
+    # Default page size is 10
     page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 1000
@@ -18,31 +19,11 @@ class VideoListAPIView(ListAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
+        # Get all video details
         queryset = self.model.objects.all()
         query = self.request.query_params.get('query')
+        # If query_term provided, filter the data by searching for it in title and description
         if query is not None:
             queryset = queryset.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        # Return data in reverse chronological order of published time
         return queryset.order_by('-publishTime')
-
-# getLatestDataFromYoutube(repeat=3600)
-# import asyncio
-# import time
-
-# async def say_after(delay, what):
-#     await asyncio.sleep(delay)
-#     print(what)
-
-# async def main():
-#     print(f"started at {time.strftime('%X')}")
-
-#     task1 = asyncio.create_task(
-#         getLatestDataFromYoutube(1, 'hello'))
-
-#     # task2 = asyncio.create_task(
-#     #     say_after(2, 'world'))
-#     # await say_after(1, 'hello')
-#     # await say_after(2, 'world')
-
-#     print(f"finished at {time.strftime('%X')}")
-
-# asyncio.run(main())
