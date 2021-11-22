@@ -6,7 +6,6 @@ click==8.0.3
 colorama==0.4.4
 Deprecated==1.2.13
 Django==3.2.9
-django-background-tasks==1.2.5
 django-compat==1.0.15
 djangorestframework==3.12.4
 google-api-core==2.2.2
